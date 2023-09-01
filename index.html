@@ -14,9 +14,12 @@
     <header>
         <h2 class="text-center text-6xl mb-6 font-bold">Hunting Phone</h2>
     </header>
-    <main class="container my-2 mx-auto">
+    <main class="container my-8 mx-auto">
+       
+
+        
         <!-- search button -->
-        <section class="bg-gray-100 p-4 m-4 text-center">
+        <section class="bg-gray-100 p-4 my-4 text-center rounded-lg">
             <input id="search-field" type="text" placeholder="Search..." class="input input-bordered w-2/3" />
             <button onclick="handleSearch()" class="btn btn-accent">Search</button>
         </section>
@@ -24,14 +27,35 @@
 
         <!-- serarch result -->
         <section class="text-center">
-            <div id="phone-container" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+             <!-- spinner or loader -->
+            <div id="loading-spinner" class="hidden my-40">
+                <span class="loading loading-spinner text-success"></span>
+            </div>
+            <!-- phone display section -->
+            <div id="phone-container" class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
             </div>
-        <!-- show all button -->
-           <div id="show-all-container" class="hidden">
-            <button  class="btn btn-info">Show all</button>
-           </div>
+            <!-- show all button -->
+            <div id="show-all-container" class="hidden my-8">
+                <button onclick="handleShowAll()" class="btn btn-info">Show all</button>
+            </div>
         </section>
+
+        <!-- Open the modal using ID.showModal() method -->
+<dialog id="show_details_modal" class="modal modal-bottom sm:modal-middle">
+  <form method="dialog" class="modal-box">
+   
+    <div id="show-detail-container">
+
+    </div>
+
+
+    <div class="modal-action">
+      <!-- if there is a button in form, it will close the modal -->
+      <button class="btn bg-red-600 hover:bg-red-200 text-white">Close</button>
+    </div>
+  </form>
+</dialog>
     </main>
     <footer>
 
