@@ -1,5 +1,5 @@
-const loadPhone = async () => {
-    const res = await fetch('https://openapi.programming-hero.com/api/phones?search=iphone')
+const loadPhone = async (searchText) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
 
     const loadData = await res.json();
     // console.log(data);
@@ -12,16 +12,18 @@ const loadPhone = async () => {
 const displayPhones = phones => {
     //get the the position of id where to show
     const phoneContainer = document.getElementById('phone-container');
+    // clear the old data before the new data
+    phoneContainer.textContent='';
     phones.forEach(phone => {
-       
+
         const phoneCard = document.createElement('div');
-        phoneCard.classList = `card w-auto bg-base-100 shadow-xl`;
-            
-        phoneCard.innerHTML=`
+        phoneCard.classList = `card bg-gray-100 p-4 shadow-xl`;
+
+        phoneCard.innerHTML = `
         <figure><img src="${phone.image}" alt="Shoes" /></figure>
                     <div class="card-body">
-                      <h2 class="card-title">Shoes!</h2>
-                      <p>If a dog chews shoes whose shoes does he choose?</p>
+                      <h2 class="card-title">${phone.phone_name}</h2>
+                      <p>There are many variations of passages of available, but the majority have suffered</p>
                       <div class="card-actions justify-end">
                         <button class="btn btn-primary">Buy Now</button>
                       </div>
@@ -31,4 +33,14 @@ const displayPhones = phones => {
     });
 }
 
-loadPhone();
+
+//handle search button
+
+const handleSearch = () => {
+// console.log('search added')
+const searchField = document.getElementById('search-field');
+searchText = searchField.value;
+// console.log(searchText);
+loadPhone(searchText);
+}
+
